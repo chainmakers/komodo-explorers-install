@@ -120,7 +120,7 @@ cat << EOF > $CUR_DIR/GLXT-explorer/bitcore-node.json
   "services": [
     "bitcoind",
     "insight-api-komodo",
-    "insight-ui-glxt",
+    "insight-ui-komodo",
     "web"
   ],
   "servicesConfig": {
