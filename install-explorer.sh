@@ -73,7 +73,7 @@ echo -e "$STEP_START[ Step 4 ]$STEP_END Creating komodod configs and deploy expl
 
 
 # Start ports
-rpcport=13109
+rpcport=12986
 zmqport=8333
 webport=3001
 
@@ -106,14 +106,14 @@ webport=3001
 # addnode=89.248.166.91
 # EOF
 
-# Create KMD explorer and bitcore-node.json config for it
+# Create ILN explorer and bitcore-node.json config for it
 
-$CUR_DIR/node_modules/bitcore-node-komodo/bin/bitcore-node create GLXT-explorer
-cd GLXT-explorer
-$CUR_DIR/node_modules/bitcore-node-komodo/bin/bitcore-node install git+https://git@github.com/DeckerSU/insight-api-komodo git+https://git@github.com/chainmakers/insight-ui-glxt.git#dev
+$CUR_DIR/node_modules/bitcore-node-komodo/bin/bitcore-node create ILN-explorer
+cd ILN-explorer
+$CUR_DIR/node_modules/bitcore-node-komodo/bin/bitcore-node install git+https://git@github.com/DeckerSU/insight-api-komodo git+https://git@github.com/chainmakers/insight-ui-komodo
 cd $CUR_DIR
 
-cat << EOF > $CUR_DIR/GLXT-explorer/bitcore-node.json
+cat << EOF > $CUR_DIR/ILN-explorer/bitcore-node.json
 {
   "network": "mainnet",
   "port": $webport,
@@ -148,15 +148,15 @@ cat << EOF > $CUR_DIR/GLXT-explorer/bitcore-node.json
 EOF
 
 # creating launch script for explorer
-cat << EOF > $CUR_DIR/GLXT-explorer-start.sh
+cat << EOF > $CUR_DIR/ILN-explorer-start.sh
 #!/bin/bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-cd GLXT-explorer
+cd ILN-explorer
 nvm use v4; ./node_modules/bitcore-node-komodo/bin/bitcore-node start
 EOF
 
-chmod +x GLXT-explorer-start.sh
+chmod +x ILN-explorer-start.sh
 
 # now we need to create assets configs for komodod and create explorers for each asset
 #declare -a kmd_coins=(REVS SUPERNET DEX PANGEA JUMBLR BET CRYPTO HODL MSHARK BOTS MGW COQUI WLC KV CEAL MESH MNZ AXO ETOMIC BTCH PIZZA BEER NINJA OOT BNTN CHAIN PRLPAY DSEC GLXT EQL)
@@ -249,7 +249,7 @@ chmod +x GLXT-explorer-start.sh
 
 # done
 
-echo -e "$STEP_START[ Step 5 ]$STEP_END Launching GLXT daemon"
-cd $CUR_DIR/komodo/src
-./assetchains # adjusted to launch GLXT only
-cd $CUR_DIR
+# echo -e "$STEP_START[ Step 5 ]$STEP_END Launching ILN daemon"
+# cd $CUR_DIR/komodo/src
+# ./assetchains 
+# cd $CUR_DIR
